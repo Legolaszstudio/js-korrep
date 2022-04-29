@@ -7,3 +7,7 @@
 - [Bolt (gombnyomásra)](bolt-html.md)
 - [Switch (+számológép)](switch-szamologep.md)
 - [Szorgalmi bolt](szorgalmi.md)
+
+## Kiegészítő feladat
+
+- [Hangulat lista](hangulat-lista.md)
