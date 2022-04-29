@@ -64,3 +64,15 @@ Illetve a prompt-nak egy alapértéket is megadhatunk, amennyiben a felhasznál�
 const abra = prompt("Mi az ábra fiatalok?", "Minden rendben");
 alert(abra); // Minden rendben, abban az esetben ha a felhasználó nem ír be semmit
 ```
+
+## Template literal
+
+A template literal-ok, másik nevén template stringek, olyan szövegek amelyek programozási kifejezéseket is tartalmaznak.
+Jelölésük a backtick, amit az AltGr+7 kombinációval tudunk csinálni, majd bennük a programozási kifejezést `${}`-vel jelöljük
+Pl.:
+```js
+`2+2=${2+2}` // 2+2=4
+
+const age = prompt('Hány éves vagy?'); // Mondjuk azt írják be, hogy 19
+alert(`A felhasználó ${age} éves`); // A felhasználó 19 éves
+```
