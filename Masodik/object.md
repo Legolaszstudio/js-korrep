@@ -67,7 +67,7 @@ console.log(adatok['vegzettseg']['altalanos']); // true
 ```
 
 ## Kulcsok használata
-Ha nem tudjuk milyen kulcsok vannak a listánkban akkor meg tudhatjuk [for in](https://github.com/Legolaszstudio/js-korrep/blob/main/Elso/ciklus.md#for-in) vagy `Object.keys` segítségével.
+Ha nem tudjuk milyen kulcsok vannak a listánkban akkor meg tudhatjuk [for in](../Elso/ciklus.md#for-in) vagy `Object.keys` segítségével.
 ```js
 const adatok = {
   nev: "Novotny Levente",
