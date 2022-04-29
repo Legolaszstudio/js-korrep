@@ -8,5 +8,5 @@ Itt találhatóak feladatok, amiket az iskolában oldottunk meg, illetve extra g
 
 ## Tartalom
 
-- **[Első óra](/Elso/)**: [Ki/be adatok](./Elso/alert_log_prompt.md), [tárolás](./Elso/valtozo.md), [if](./Elso/if.md), [listák](./Elso/array.md), [ismétlés](./Elso/ciklus.md), [bolt](./Elso/bolt.md)
-- **[Második óra](/Masodik/)**: [Objektumok](./Masodik/object.md), [function-ok](./Masodik/func.md), [bolt](./Masodik/bolt.md), [bolt gombra](./Masodik/bolt-html.md), [html események (alapok)](html-eventek.md), [Switch (+számológép)](switch-szamologep.md)
+- **[Első óra](/Elso/)**: Alapok
+- **[Második óra](/Masodik/)**: Objektumok, függvények, html (alapok)
