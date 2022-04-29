@@ -105,7 +105,7 @@ function kiir() {
 
 ## Szorgalmi
 
-**Utánanézős szorgalmi feladat**: .appendChild() és document.createElement() segítségével old meg, hogy egy div-en belül külön p-kbe vannak a kimenetek. _(**+2** pont)_
+**Utánanézős szorgalmi feladat**: [.appendChild()](https://www.w3schools.com/jsref/met_node_appendchild.asp) és [document.createElement()](https://www.w3schools.com/jsref/met_document_createelement.asp) segítségével old meg, hogy egy div-en belül külön p-kbe vannak a kimenetek. _(**+2** pont)_
 
 Pl.:
 ![példa](./assets/feladat_div.png)
