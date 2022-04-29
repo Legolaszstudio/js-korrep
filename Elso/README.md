@@ -5,4 +5,4 @@
 - [If, if else, else](alert_log_prompt.md)
 - [Array-ek](array.md)
 - [Ciklusok](ciklus.md)
-- [Bolt (2listas)](bolt.md)
+- [Bolt (2 listás)](bolt.md)

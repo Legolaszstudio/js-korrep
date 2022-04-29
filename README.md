@@ -8,5 +8,5 @@ Itt találhatóak feladatok, amiket az iskolában oldottunk meg, illetve extra g
 
 ## Tartalom
 
-- [Első óra](/Elso/): Ki/be adatok, tárolás, if, listák, ismétlés
-- [Második óra](/Masodik/): Objektumok, function-ok
+- **[Első óra](/Elso/)**: [Ki/be adatok](./Elso/alert_log_prompt.md), [tárolás](./Elso/valtozo.md), [if](./Elso/if.md), [listák](./Elso/array.md), [ismétlés](./Elso/ciklus.md), [bolt](./Elso/bolt.md)
+- **[Második óra](/Masodik/)**: [Objektumok](./Masodik/object.md), [function-ok](./Masodik/func.md)
