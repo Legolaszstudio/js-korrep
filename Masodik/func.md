@@ -55,6 +55,8 @@ const sinSzam = sin(szam); // <--- a bemenet névnek nem kell egyezni a paramét
 alert(`${szam} sin-je ${sinSzam}`);
 ```
 
+> :warning: A paraméterek sorrendje nem felcserélhető, mindenhol ugyanabban a sorrendben kell megjelenniük
+
 ## Menő nyilas szintaxis
 
 Ugyanazt tudja mint a sima function, csak más a szintaxisa.
@@ -99,3 +101,18 @@ novyConsole.log('Az alma finom');
 novyConsole.warn('Urbin veszélyes ember');
 ```
 ![custom log](./assets/customLog.png)
+
+## Rekurzió
+
+:ok_hand: Jó tudni: Vannak úgy nevezett rekurzív függvények, amik saját magukra hivatkoznak, pl 100-tól visszaszámló;
+
+```js
+function visszaszamlalas(n) {
+    console.log(n);
+    if (n > 0) { // Ha nullánál kisebb számhoz értünk, akkor hagyjuk abba
+        visszaszamlalas(n - 1); // Újra meghívja magát, de ezúttal eggyel kevesebbre
+    }
+}
+
+visszaszamlalas(100);
+```
