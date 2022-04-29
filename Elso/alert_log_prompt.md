@@ -76,3 +76,19 @@ Pl.:
 const age = prompt('Hány éves vagy?'); // Mondjuk azt írják be, hogy 19
 alert(`A felhasználó ${age} éves`); // A felhasználó 19 éves
 ```
+
+## ParseInt és ParseFloat
+
+Sajnos a prompt csak szövegként tud bemenetet értelmezni, így amikor számokkal akarunk dolgozni elég érdekes hibákba futhatunk.
+```js
+const kedvenc = prompt('Mi a kedvenc számod?'); // 22
+console.log(`Kedvenc szám + 2 = ${kedvenc + 2}`); // 222, mert szövegként kezeli
+```
+
+Ilyenkor a szöveget számmá kell alakítani:
+- `parseInt`: Egész számok (-1, 0, 1...)
+- `parseFloat`: Tört számok (-1.2, 0.96, 0.2...)
+```js
+const kedvenc = parseFloat(prompt('Mi a kedvenc számod?')); // 0.2
+console.log(`Kedvenc szám + 2 = ${kedvenc + 2}`); // 2.2
+```
