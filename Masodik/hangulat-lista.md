@@ -1,6 +1,6 @@
 # Hangulat lista
 
-Készíts egy programot, amiben nyomon tudod követni emberek hangulatát (boldog, szomorú, közömbös). _(1 pont)_
+Készíts egy programot, amiben nyomon tudod követni emberek hangulatát (boldog, szomorú, közömbös). _(1 pont)_ <br>
 Az emberek nevét és hangulatát 1 objektumban csoportosítva listában tárold.
 
 Készíts html interfészt a kódod-nak;
