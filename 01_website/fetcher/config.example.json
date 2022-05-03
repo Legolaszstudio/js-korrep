@@ -1,0 +1,8 @@
+{
+    "teams": {
+        "group": "Novy Prog Konzultáció",
+        "username": "valaki@example.com",
+        "password": "SecurePassword1234"
+    },
+    "prod": false
+}
