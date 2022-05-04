@@ -1,0 +1,11 @@
+.dropdown-toggle::after {
+    color: white;
+}
+
+nav {
+    background-color: #2e2e2e;
+}
+
+.nav-link {
+    margin-left: 13px;
+}
