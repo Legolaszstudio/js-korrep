@@ -1,0 +1,20 @@
+version: '3'
+services:
+  korrep-frontend:
+    image: korrep-frontend-arm
+    ports:
+      - "90:80"
+    restart: always
+
+  korrep-backend:
+    image: korrep-backend-arm
+    volumes:
+      - ./src:/src/src
+      - ./database:/src/database
+    ports:
+      - "91:5123"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '3.25'

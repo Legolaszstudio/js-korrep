@@ -3,6 +3,21 @@ import "./main.css";
 import { BarChart, Cell, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useTable } from 'react-table';
 
+const colorList = [
+    '#56e2cf',
+    '#56aee2',
+    '#5668e2',
+    '#8a56e2',
+    '#cf56e2',
+    '#e256ae',
+    '#e25668',
+    '#e28956',
+    '#e2cf56',
+    '#aee256',
+    '#68e256',
+    '#56e289',
+];
+
 class CustomizedLabel extends React.Component {
     render() {
         const { x, y, index, payload } = this.props;
@@ -104,8 +119,13 @@ class Main extends React.Component {
         data: {},
         columns: [],
         maxSum: 0,
+        showSum: true,
     };
 
+    constructor(props) {
+        super(props);
+        this.changeRenderer = this.changeRenderer.bind(this);
+    }
 
     static getDerivedStateFromProps(nextProps, _prevState) {
         const temp = nextProps.data;
@@ -153,10 +173,14 @@ class Main extends React.Component {
         return { data: {} };
     }
 
+    changeRenderer() {
+        this.setState({ showSum: !this.state.showSum });
+    }
+
     render() {
         return (
             <div className="main mb-3">
-                <ResponsiveContainer width="99%" height={500}>
+                {this.state.showSum ? <ResponsiveContainer width="99%" height={500}>
                     <BarChart data={this.state.data.points} layout="vertical"
                         margin={{ right: 20, left: 20, bottom: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -166,11 +190,34 @@ class Main extends React.Component {
                         <Legend />
                         <Bar dataKey="sum" fill="#2ecc71" name="Pontok" >
                             {this.state.data.points == null ? '' : this.state.data.points.map((entry, index) => (
-                                <Cell key={entry.name} fill={getColorFromPercent(entry.sum/this.state.maxSum)} />
+                                <Cell key={entry.name} fill={getColorFromPercent(entry.sum / this.state.maxSum)} />
                             ))}
                         </Bar>
                     </BarChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer> :
+
+                    <ResponsiveContainer width="99%" height={500}>
+                        <BarChart data={this.state.data.points} layout="vertical"
+                            margin={{ right: 20, left: 20, bottom: 20 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis type="number" tick={{ fill: 'white' }} />
+                            <YAxis type="category" width={180} dataKey="name" tick={<CustomizedLabel points={this.state.data.points} />} />
+                            <Tooltip />
+                            <Legend />
+                            {
+                                this.state.data.refs == null ? '' :
+                                    this.state.data.refs.map((entry, index) => (
+                                        <Bar dataKey={entry.id} name={entry.name.substring(0, 15) + "..."} fill={colorList[index % colorList.length]}/>
+                                    ))
+                            }
+                        </BarChart>
+                    </ResponsiveContainer>
+                }
+                <div className="m-auto">
+                    <button onClick={this.changeRenderer} type="button" className="d-block m-auto mb-3 btn btn-primary">
+                        {this.state.showSum ? 'Feladat szerint' : 'Összesítés szerint'}
+                    </button>
+                </div>
                 <div className="m-auto">
                     <DataTable columns={this.state.columns} data={this.state.data.points} />
                 </div>

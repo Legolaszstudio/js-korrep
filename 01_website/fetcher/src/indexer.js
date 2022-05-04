@@ -34,31 +34,40 @@ module.exports = async function (config, db) {
     }
 
     const page = await browser.newPage();
-    await page.goto('https://office.com', { waitUntil: 'networkidle0', timeout: 0 });
+    await page.goto('https://office.com', { waitUntil: 'networkidle0', timeout: 60000 });
     console.log("Opened office".magenta);
     await page.click("#hero-banner-sign-in-to-office-365-link"); //Press login
     console.log("Opened Login Page".magenta);
     try {
-        await page.waitForNavigation({ waitUntil: 'networkidle2' });
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
     await page.type('#i0116', config.teams.username);
     await page.click("#idSIButton9"); //Press next
     console.log("Entered Username".magenta);
+    try {
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+    } catch (e) {
+        console.log("Navigation timeout continuing".red);
+    }
     await page.type('#i0118', config.teams.password);
     await page.click("#idSIButton9"); //Press login
     console.log("Entered Password".magenta);
     try {
-        await page.waitForNavigation({ waitUntil: 'networkidle2' });
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
     console.log("Pressed Stay Logged In".magenta);
-    await timeout(1500);
+    await timeout(2500);
     await page.click("#idSIButton9"); //Press stayed login
     try {
-        await page.waitForNavigation({ waitUntil: 'networkidle2' });
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -71,17 +80,29 @@ module.exports = async function (config, db) {
     }
     console.log("Opened teams webapp".magenta);
     try {
-        await page.waitForNavigation({ waitUntil: 'networkidle2' });
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
     //END OF LOGIN
     //START OF GETTING ASSIGMENTS
-    await timeout(2500);
+    await timeout(10000);
     await page.click("#teams-app-bar > ul > li:nth-child(4)"); //Click on assignments
-    await page.reload({ waitUntil: "networkidle2", timeout: 0 });
+    try {
+        await timeout(2500);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+    } catch (e) {
+        console.log("Navigation timeout continuing".red);
+    }
     console.log("Navigated To Assignments Page".magenta);
-    await timeout(5000);
+    try {
+        await timeout(5000);
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 120000 });
+    } catch (e) {
+        console.log("Navigation timeout continuing".red);
+    }
+    await timeout(2500);
     const elementHandle = await page.$(
         'embedded-page-container > div > iframe',
     );
@@ -89,17 +110,17 @@ module.exports = async function (config, db) {
     try {
         await frame.click("#PivotTab_classSelectorAndFilter > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(1)");
         console.log("Opened dropdown".magenta);
-        await timeout(2000);
+        await timeout(10000);
         await frame.type('input[data-test="dropdown-filter-input"]', config.teams.group);
         console.log("Typed team name".magenta);
-        await timeout(500);
+        await timeout(5000);
         await frame.click('div.ms-List-cell[data-list-index="0"]');
         console.log("Clicked first".magenta);
     } catch (e) {
         console.error(e);
     }
     console.log(`Navigated To ${config.teams.group} Page`.magenta);
-    await timeout(2500);
+    await timeout(5000);
     const itemCount = await frame.$eval('div[data-test="assignment-list"] > :nth-child(1)', e => e.children.length);
     console.log(itemCount);
     const assignments = [];
@@ -107,13 +128,13 @@ module.exports = async function (config, db) {
         if ((await frame.$('div[data-test="assignment-list"] > :nth-child(1) > :nth-child(1)')) == null) {
             if (rep == 0) {
                 await frame.click('button#PivotTab_graded');
-                await timeout(1000);
+                await timeout(5000);
             }
             continue;
         }
         for (let i = 1; i <= itemCount; i++) {
             await frame.click(`div[data-test="assignment-list"] > :nth-child(1) > :nth-child(${i})`);
-            await timeout(2500);
+            await timeout(10000);
             let result = await frame.evaluate(() => {
                 if (document.querySelector('main > :nth-child(3) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(5) > :nth-child(1)') == null) return []; // Nothing to get
                 const itLength = document.querySelector('main > :nth-child(3) > :nth-child(2) > :nth-child(2) > :nth-child(1) > :nth-child(1)').children.length;
@@ -153,7 +174,7 @@ module.exports = async function (config, db) {
             assignments.push(result);
             console.log(`Got ${i} task non returned`.magenta);
             await frame.click('button[data-test="graded-tab"]');
-            await timeout(2500);
+            await timeout(10000);
             result = await frame.evaluate(() => {
                 if (document.querySelector('main > :nth-child(3) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(5) > :nth-child(1)') == null) return []; // Nothing to get
                 const itLength = document.querySelector('main > :nth-child(3) > :nth-child(2) > :nth-child(2) > :nth-child(1) > :nth-child(1)').children.length;
@@ -197,12 +218,12 @@ module.exports = async function (config, db) {
             } catch (e) {
                 console.log("Navigation timeout continuing".red);
             }
-            await timeout(1000);
+            await timeout(5000);
         }
         console.log(`Got all tasks ${rep == 0 ? 'that are not returned' : 'that are returned'}`.magenta);
         if (rep == 0) {
             await frame.click('button#PivotTab_graded');
-            await timeout(1000);
+            await timeout(5000);
         }
     }
 

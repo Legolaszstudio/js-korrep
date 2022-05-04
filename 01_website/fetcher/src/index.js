@@ -1,15 +1,14 @@
 const fastify = require('fastify')();
 const cron = require('node-cron');
-const config = require('./config.json');
+const config = require('../config.json');
 const indexer = require('./indexer');
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('./database/database.db');
-const prod = false;
 let initialized = false;
 
-cron.schedule('8 */2 * * *', async () => {
+cron.schedule('3 2 * * *', async () => {
     if (!initialized) return;
-    console.log('Running fetching every two hours'.rainbow);
+    console.log('Running fetching every two o\'clock'.rainbow);
     await indexer(config, db);
     console.log('Fetching done'.green);
 });
@@ -18,7 +17,8 @@ fastify.addHook('onRequest', (request, reply, done) => {
     // Use https when possible
     reply.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
     // Allow cors in debug
-    if (!prod) reply.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    if (!config.prod) reply.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    if (config.prod) reply.header('Cache-Control', 'public, max-age=1800');
     done();
 });
 
