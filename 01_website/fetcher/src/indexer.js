@@ -134,7 +134,7 @@ module.exports = async function (config, db) {
         }
         for (let i = 1; i <= itemCount; i++) {
             await frame.click(`div[data-test="assignment-list"] > :nth-child(1) > :nth-child(${i})`);
-            await timeout(10000);
+            await timeout(20000);
             let result = await frame.evaluate(() => {
                 if (document.querySelector('main > :nth-child(3) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(5) > :nth-child(1)') == null) return []; // Nothing to get
                 const itLength = document.querySelector('main > :nth-child(3) > :nth-child(2) > :nth-child(2) > :nth-child(1) > :nth-child(1)').children.length;
@@ -174,7 +174,7 @@ module.exports = async function (config, db) {
             assignments.push(result);
             console.log(`Got ${i} task non returned`.magenta);
             await frame.click('button[data-test="graded-tab"]');
-            await timeout(10000);
+            await timeout(20000);
             result = await frame.evaluate(() => {
                 if (document.querySelector('main > :nth-child(3) > :nth-child(1) > :nth-child(1) > :nth-child(1) > :nth-child(5) > :nth-child(1)') == null) return []; // Nothing to get
                 const itLength = document.querySelector('main > :nth-child(3) > :nth-child(2) > :nth-child(2) > :nth-child(1) > :nth-child(1)').children.length;
