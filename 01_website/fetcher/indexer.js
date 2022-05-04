@@ -127,11 +127,25 @@ module.exports = async function (config, db) {
                         name = name.split('\n')[1];
                     }
                     const points = item.children[0].children[4].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].value;
+                    let image = null;
+                    try {
+                        image = item.children[0].children[1].children[0].children[0].children[0].children[0].src;
+                    } catch (e) { }
+                    // MAYBE initials only
+                    if (image == null) {
+                        const color = window.getComputedStyle(item.children[0].children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0], null).getPropertyValue('background-color');
+                        const initials = item.children[0].children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].innerText;
+                        if (color != null && initials != null) {
+                            image = `<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="${color}" /> <g>  <text font-weight="normal" transform="matrix(1 0 0 1 0 0)" xml:space="preserve" text-anchor="start" font-family="'Sans-serif'" font-size="20" id="svg_4" y="21" x="1" stroke-width="0" stroke="#000" fill="#ffffff">${initials}</text> </g></svg>`;
+                            image = "data:image/svg+xml;base64," + btoa(image);
+                        }
+                    }
                     itemList.push({
                         name,
                         points: points == '' ? 0 : parseInt(points),
                         maxPoints,
-                        task
+                        task,
+                        image
                     });
                 }
                 return itemList;
@@ -153,11 +167,25 @@ module.exports = async function (config, db) {
                         name = name.split('\n')[1];
                     }
                     const points = item.children[0].children[4].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].value;
+                    let image = null;
+                    try {
+                        image = item.children[0].children[1].children[0].children[0].children[0].children[0].src;
+                    } catch (e) { }
+                    // MAYBE initials only
+                    if (image == null) {
+                        const color = window.getComputedStyle(item.children[0].children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0], null).getPropertyValue('background-color');
+                        const initials = item.children[0].children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].innerText;
+                        if (color != null && initials != null) {
+                            image = `<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="${color}" /> <g>  <text font-weight="normal" transform="matrix(1 0 0 1 0 0)" xml:space="preserve" text-anchor="start" font-family="'Sans-serif'" font-size="20" id="svg_4" y="21" x="1" stroke-width="0" stroke="#000" fill="#ffffff">${initials}</text> </g></svg>`;
+                            image = "data:image/svg+xml;base64," + btoa(image);
+                        }
+                    }
                     itemList.push({
                         name,
                         points: parseInt(points),
                         maxPoints,
-                        task
+                        task,
+                        image
                     });
                 }
                 return itemList;
@@ -184,6 +212,7 @@ module.exports = async function (config, db) {
         console.log("An error happened while closing the browser, still continuing though!".red, e);
     }
 
+
     for (let i = 0; i < assignments.length; i++) {
         if (assignments[i].length == 0) continue;
         const taskHash = crypto.createHash('sha1').update(assignments[i][0].task).digest('hex');
@@ -191,13 +220,16 @@ module.exports = async function (config, db) {
         if (hasHash.rows.length == 0) {
             await db.query("INSERT INTO refs (id, name, maxpoints) VALUES (?, ?, ?)", [taskHash, assignments[i][0].task, assignments[i][0].maxPoints]);
             await db.query(`ALTER TABLE points ADD COLUMN '${taskHash}' INTEGER DEFAULT 0;`);
+            console.log(`Created column for ${assignments[i][0].task} (${taskHash})`.cyan);
         }
         for (const element of assignments[i]) {
             if (i == 0) {
                 const doesExist = await db.query("SELECT 1 FROM points WHERE name = ?", [element.name]);
                 if (doesExist.rows.length == 0) {
                     await db.query("INSERT INTO points (name) VALUES (?)", [element.name]);
+                    console.log(`Created row for ${element.name}`.cyan);
                 }
+                await db.query("UPDATE points SET img = ? WHERE name = ?", [element.image, element.name]);
             }
             await db.query(`UPDATE points SET '${taskHash}' = ? WHERE name = ?`, [element.points, element.name]);
         }

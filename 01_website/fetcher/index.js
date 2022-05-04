@@ -4,14 +4,34 @@ const config = require('./config.json');
 const indexer = require('./indexer');
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('./database/database.db');
+const prod = false;
+let initialized = false;
 
-fastify.get('/', async (request, reply) => {
-    return "Hello World!";
+cron.schedule('8 */2 * * *', async () => {
+    if (!initialized) return;
+    console.log('Running fetching every two hours'.rainbow);
+    await indexer(config, db);
+    console.log('Fetching done'.green);
+});
+
+fastify.addHook('onRequest', (request, reply, done) => {
+    // Use https when possible
+    reply.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    // Allow cors in debug
+    if (!prod) reply.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    done();
+});
+
+fastify.get('/get-all', async (_request, reply) => {
+    const points = await db.query('SELECT * FROM points');
+    const refs = await db.query('SELECT * FROM refs');
+    reply.status(200).send({
+        points: points.rows,
+        refs: refs.rows,
+    });
 });
 
 async function main() {
-    await db.run('CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY, name TEXT)');
-    await db.run('CREATE TABLE IF NOT EXISTS refs (id TEXT PRIMARY KEY, name TEXT, maxpoints INTEGER)');
     db.query = function (sql, params) {
         var that = this;
         return new Promise(function (resolve, reject) {
@@ -23,14 +43,23 @@ async function main() {
             });
         });
     };
+    await db.query('CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY, name TEXT, img TEXT)');
+    await db.query('CREATE TABLE IF NOT EXISTS refs (id TEXT PRIMARY KEY, name TEXT, maxpoints INTEGER DEFAULT 0)');
     console.log('Database initialized');
-    indexer(config, db); // TODO: Only index on startup if this is first run
+
+    const isIntitialized = await db.query('SELECT 1 FROM refs LIMIT 1');
+    if (isIntitialized.rows.length === 0) {
+        console.log('Not yet fetched, fetching'.cyan);
+        await indexer(config, db);
+        console.log('Fetching done'.green);
+    }
+    initialized = true;
     fastify.listen('5123', '0.0.0.0', async function (err, address) {
         if (err) {
             logger.error(err);
             process.exit(1);
         }
-        console.log(`API listening on ${address}`);
+        console.log(`API listening on ${address}`.green);
     });
 }
 
