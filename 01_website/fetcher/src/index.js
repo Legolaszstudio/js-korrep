@@ -22,7 +22,7 @@ fastify.addHook('onRequest', (request, reply, done) => {
     done();
 });
 
-fastify.get('/get-all', async (_request, reply) => {
+fastify.get('/api/get-all', async (_request, reply) => {
     const points = await db.query('SELECT * FROM points');
     const refs = await db.query('SELECT * FROM refs');
     reply.status(200).send({

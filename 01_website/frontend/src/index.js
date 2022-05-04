@@ -11,4 +11,4 @@ root.render(
 );
 
 export const isProd = false;
-export const apiAddress = isProd ? 'https://korrep.novy.vip/api' : 'http://localhost:5123';
+export const apiAddress = isProd ? 'https://korrep.novy.vip/api' : 'http://localhost:5123/api';
