@@ -2,6 +2,8 @@
 
 A kiadott feladatokra pontok járnak, ezért csináltam egy weboldalt, ahol lehet versenyezni, hogy ki ér el több pontot.
 
+A feladatokat puppeteer segítségével szerzem meg és egy react-os frontend jelenítem meg.
+
 Itt érhető el: [korrep.novy.vip](https://korrep.novy.vip/)
 
 U.I: A kódot is nyugodtan lehet böngészni :)
