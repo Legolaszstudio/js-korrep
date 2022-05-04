@@ -1,6 +1,6 @@
 import React from "react";
 import "./main.css";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Cell, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useTable } from 'react-table';
 
 class CustomizedLabel extends React.Component {
@@ -103,6 +103,7 @@ class Main extends React.Component {
     state = {
         data: {},
         columns: [],
+        maxSum: 0,
     };
 
 
@@ -147,7 +148,7 @@ class Main extends React.Component {
                     Cell: ({ value }) => <p style={{ margin: 0, color: getColorFromPercent(value / maxPoints) }}>{String(value) + "/" + maxPoints}</p>,
                 });
             }
-            return { data: temp, columns };
+            return { data: temp, columns, maxSum: pointSum };
         }
         return { data: {} };
     }
@@ -163,7 +164,11 @@ class Main extends React.Component {
                         <YAxis type="category" width={180} dataKey="name" tick={<CustomizedLabel points={this.state.data.points} />} />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="sum" fill="#2ecc71" name="Pontok" />
+                        <Bar dataKey="sum" fill="#2ecc71" name="Pontok" >
+                            {this.state.data.points == null ? '' : this.state.data.points.map((entry, index) => (
+                                <Cell key={entry.name} fill={getColorFromPercent(entry.sum/this.state.maxSum)} />
+                            ))}
+                        </Bar>
                     </BarChart>
                 </ResponsiveContainer>
                 <div className="m-auto">
