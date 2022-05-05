@@ -34,13 +34,13 @@ module.exports = async function (config, db) {
     }
 
     const page = await browser.newPage();
-    await page.goto('https://office.com', { waitUntil: 'networkidle0', timeout: 60000 });
+    await page.goto('https://office.com', { waitUntil: 'networkidle0', timeout: 30000 });
     console.log("Opened office".magenta);
     await page.click("#hero-banner-sign-in-to-office-365-link"); //Press login
     console.log("Opened Login Page".magenta);
     try {
         await timeout(2500);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -49,7 +49,7 @@ module.exports = async function (config, db) {
     console.log("Entered Username".magenta);
     try {
         await timeout(2500);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -58,7 +58,7 @@ module.exports = async function (config, db) {
     console.log("Entered Password".magenta);
     try {
         await timeout(2500);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -67,7 +67,7 @@ module.exports = async function (config, db) {
     await page.click("#idSIButton9"); //Press stayed login
     try {
         await timeout(2500);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -81,7 +81,7 @@ module.exports = async function (config, db) {
     console.log("Opened teams webapp".magenta);
     try {
         await timeout(2500);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -90,14 +90,14 @@ module.exports = async function (config, db) {
     await page.click("#teams-app-bar > ul > li:nth-child(4)"); //Click on assignments
     try {
         await timeout(1000);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
     console.log("Navigated To Assignments Page".magenta);
     try {
         await timeout(1000);
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 120000 });
+        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
     } catch (e) {
         console.log("Navigation timeout continuing".red);
     }
@@ -224,14 +224,7 @@ module.exports = async function (config, db) {
             await timeout(2500);
         }
     }
-
-    try {
-        await browser.close();
-    } catch (e) {
-        console.log("An error happened while closing the browser, still continuing though!".red, e);
-    }
-
-
+    
     for (let i = 0; i < assignments.length; i++) {
         if (assignments[i].length == 0) continue;
         const taskHash = crypto.createHash('sha1').update(assignments[i][0].task).digest('hex');
@@ -252,5 +245,12 @@ module.exports = async function (config, db) {
             }
             await db.query(`UPDATE points SET '${taskHash}' = ? WHERE name = ?`, [element.points, element.name]);
         }
+    }
+
+    try {
+        await page.close();
+        await browser.close();
+    } catch (e) {
+        console.log("An error happened while closing the browser, still continuing though!".red, e);
     }
 };
