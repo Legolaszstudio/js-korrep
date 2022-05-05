@@ -4,5 +4,6 @@
         "username": "valaki@example.com",
         "password": "SecurePassword1234"
     },
-    "prod": false
+    "prod": false,
+    "index": true
 }

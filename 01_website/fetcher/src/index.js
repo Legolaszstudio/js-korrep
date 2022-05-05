@@ -6,7 +6,7 @@ const sqlite = require('sqlite3');
 const db = new sqlite.Database('./database/database.db');
 let initialized = false;
 
-cron.schedule('3 2 * * *', async () => {
+if (config.index) cron.schedule('3 2 * * *', async () => {
     if (!initialized) return;
     console.log('Running fetching every two o\'clock'.rainbow);
     await indexer(config, db);
@@ -48,7 +48,7 @@ async function main() {
     console.log('Database initialized');
 
     const isIntitialized = await db.query('SELECT 1 FROM refs LIMIT 1');
-    if (isIntitialized.rows.length === 0) {
+    if (config.index && isIntitialized.rows.length === 0) {
         console.log('Not yet fetched, fetching'.cyan);
         await indexer(config, db);
         console.log('Fetching done'.green);
