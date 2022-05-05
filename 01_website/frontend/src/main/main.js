@@ -133,7 +133,7 @@ class Main extends React.Component {
             temp.points.sort(function (a, b) {
                 if (a.sum < b.sum) return 1;
                 if (a.sum > b.sum) return -1;
-                return 0;
+                return a.name.localeCompare(b.name);
             });
 
             let pointSum = 0;
