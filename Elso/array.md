@@ -1,6 +1,6 @@
 # Listák/Tömbök
 
-A listák és a tömbök teljesen küönböző dolgok, még is nagyon hasonlóak, js-ben szerencsére csak Array-ek vannak, ha valaki itt azt mondja, hogy lista, akkor egy Array-re gondol.
+A listák és a tömbök teljesen különböző dolgok, még is nagyon hasonlóak, js-ben szerencsére csak Array-ek vannak, ha valaki itt azt mondja, hogy lista, akkor egy Array-re gondol.
 
 #### Mi egy array?
 
