@@ -106,5 +106,5 @@ Másoljuk a `CODE` gombnál található linket egy `git clone` parancs után:
 
 ![repo](./assets/setup/clone.png)
 
-
+Nyissuk meg az új mappákant, amiben a `README.md`-t találjuk, vsc-ben.
 Folytatás a [vsc](vsc.md)-s oldalon!
