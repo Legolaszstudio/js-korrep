@@ -2,6 +2,6 @@
 
 - [Szakszavak](szavak.md)
 - [Első haználat](setup.md)
-- Webes felület
-- Vsc-s felület
-- Cli felület
+- [Webes felület](web.md)
+- [Vsc-s felület](vsc.md)
+- [Cli felület](cli.md)

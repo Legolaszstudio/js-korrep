@@ -46,3 +46,15 @@ Ha meg vagyunk a vsc felajánlja az automatikus `fetch` futattást, ezt engedél
 Yeepee, commitunk már a GitHub oldalán is látható:
 
 ![github](./assets/vsc/commit5.png)
+
+## Stash (stage)
+
+A stash azokat a fájlokat tartalmazza amiket commitolunoi fogunk, ha nem adunk meg semmit a stash-be, akkor a vsc automatikusan stasheli az összes fájlt.
+
+Mondjuk én csak a readme módosításait szeretném feltölteni GitHub-ra és a titkos mp4 fájlt nem, akkor csak azt adom hozzá a stash-hez, a mellete található plusz gombbal (a stashből meg a minusz gombbal tudunk eltávolítani):
+
+![stash](./assets/vsc/stash.png)
+
+Ha most commitolok, akkor az mp4 fájl nem kerül ki githubra, de a stash-elt módosítás igen.
+
+![stash](./assets/vsc/stash2.png)
