@@ -14,3 +14,4 @@ Akik rész vesznek a korrepetáláson, azoknak a pontjai a [korrep.novy.vip](htt
 
 - **[Első óra](/Elso/)**: Alapok
 - **[Második óra](/Masodik/)**: Objektumok, függvények, html (alapok)
+- **[Verzió kezelés](/Harmadik/)**: Git, GitHub, és vsc git (alapok)
