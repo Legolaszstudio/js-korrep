@@ -49,7 +49,7 @@ Yeepee, commitunk már a GitHub oldalán is látható:
 
 ## Stash (stage)
 
-A stash azokat a fájlokat tartalmazza amiket commitolunoi fogunk, ha nem adunk meg semmit a stash-be, akkor a vsc automatikusan stasheli az összes fájlt.
+A stash azokat a fájlokat tartalmazza amiket commitolni fogunk, ha nem adunk meg semmit a stash-be, akkor a vsc automatikusan stasheli az összes fájlt.
 
 Mondjuk én csak a readme módosításait szeretném feltölteni GitHub-ra és a titkos mp4 fájlt nem, akkor csak azt adom hozzá a stash-hez, a mellete található plusz gombbal (a stashből meg a minusz gombbal tudunk eltávolítani):
 
@@ -58,3 +58,34 @@ Mondjuk én csak a readme módosításait szeretném feltölteni GitHub-ra és a
 Ha most commitolok, akkor az mp4 fájl nem kerül ki githubra, de a stash-elt módosítás igen.
 
 ![stash](./assets/vsc/stash2.png)
+
+## Branchek
+
+Branchek között lépegetni a bal alul található branch név gombbal tudunk.
+Illetve új branchet is itt tudunk létrehozni.
+
+![branch](./assets/vsc/branch.png)
+![branch2](./assets/vsc/branch2.png)
+
+Ha már az új branchen commitolunk feltűnhet, hogy szinkronizációs nyíl egy felhőre cserélődött, ez azért van mert a branch még csak lokálisan létezik, ezért fel kell tenni a szerverre is. Nyugodtan megnyomhatjuk ugyanúgy viselkedik, mint a szinkronizáció.
+
+![branch2](./assets/vsc/branch3.png)
+
+A gitet megnézve látjuk, hogy módosításunk csak branchet váltva látszódik, mivel a kettő ág független egymástól.
+
+![compare](./assets/vsc/branch4.png)
+
+## Merge
+
+Szeretném, hogy hertelendi feliratja megjelenje a main branchen:
+Először váltsunk arra a branchre, ami**be** szeretnénk mergelni.
+A merge menü eléggé el van rejtve:
+
+![merge](./assets/vsc/merge.png)
+
+Aztán megkérdezi, hogy **mit** szeretnénk mergelni (jelen esetben a Hertelendi branch-et).
+
+Ha minden jól megy, akkor megjelenik egy új commit, amit lehet szinkronizálni:
+
+![merge2](./assets/vsc/merge2.png)
+![merge2](./assets/vsc/merge3.png)
