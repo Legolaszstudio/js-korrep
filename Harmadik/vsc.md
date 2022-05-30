@@ -89,3 +89,13 @@ Ha minden jól megy, akkor megjelenik egy új commit, amit lehet szinkronizálni
 
 ![merge2](./assets/vsc/merge2.png)
 ![merge2](./assets/vsc/merge3.png)
+
+### Merge conflict
+
+Merge conflict akkor alakul ki, ha két branchen módosítják ugyanazt a kódot, ilyenkor a vsc egy ablakban felajnálja a lehetőségeinket a konfliktus elhárítására.
+
+![merge_conflict](./assets/vsc/merge_conflict.png)
+
+Ha azt szeretném, hogy az npc-s felirat maradjon meg, akkor a `current change`-t fogadom el, ha a css master feliratot szeretném, akkor meg elfogadom az `incoming change`-t.
+
+> :ok_hand: Jó tudni: Amennyiben egyik változtatás sem tetszik, akár saját változatra is átírhatom a kódot.
