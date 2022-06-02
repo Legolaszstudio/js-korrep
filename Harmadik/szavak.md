@@ -11,6 +11,6 @@
 - Pull: A kód letöltése a szerverről (GitHub-ról)
 - Clone: A kód másolása (GitHub-ról)
 - Tag: A kód jelenlegi helyzetét/verzióját jelöli, hogy könnyebben visszakereshető legyen (Pl.: V0.0.1)
-
+- Fork: Valaki kódbázisának egy másolata, amit mi is tudonk módosítani, de független
 
 > :warning: Ezek általános szakszavak, ezeknél jóval többel találkozhatsz. (Ne feledd, google a barátod)
