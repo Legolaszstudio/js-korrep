@@ -100,4 +100,6 @@ Ha kíváncsiak vagyunk mit csinál a kódunk, akkor a `document.write`-ot kicse
 ```
 
 És kész is vagyunk! már csak egy kis css és még szép is lesz;
+
+
 ![Kész](./assets/elso/htmltab.png)
