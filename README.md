@@ -14,4 +14,4 @@ Itt találhatóak feladatok, amiket az iskolában oldottunk meg, illetve extra g
 
 ## Egy új élet kezdete: VFI DiKU (10. osztály)
 
-- **[Első óra](/Elso/)**: Alapok (js docwrit, szorzótábla html)
+- **[Első óra](/VfiDiku/elso.md)**: Alapok (js docwrit, szorzótábla html)
