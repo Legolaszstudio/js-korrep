@@ -17,6 +17,18 @@ for (
 }
 ```
 
+_Pythonos_ összehasonlítás képpen, egy program ami, elszámol 2-esével 50-től 100-ig:
+```py
+for i in range(50, 101, 2):
+  print(i)
+```
+Ugyanez js-ben:
+```js
+for (let i = 50; i <= 100; i += 2) {
+  console.log(i);
+}
+```
+
 ## While
 
 A while loop addig fut amíg a feltétele igaz, így könnyen csinálhatunk kódot, ami a "végtelenségig" fut.

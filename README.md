@@ -6,11 +6,12 @@ Iskolai gyakorló feladatok
 
 Itt találhatóak feladatok, amiket az iskolában oldottunk meg, illetve extra gyakorló feladatok is.
 
-### Verseny
-
-Akik rész vesznek a korrepetáláson, azoknak a pontjai a [korrep.novy.vip](https://korrep.novy.vip) oldalon találhatóak.
-
-## Tartalom
+## Tartalom (9. osztály)
 
 - **[Első óra](/Elso/)**: Alapok
 - **[Második óra](/Masodik/)**: Objektumok, függvények, html (alapok)
+- **[Verzió kezelés](/Harmadik/)**: Git, GitHub, és vsc git (alapok)
+
+## Egy új élet kezdete: VFI DiKU (10. osztály)
+
+- **[Első óra](/Elso/)**: Alapok (js docwrit, szorzótábla html)

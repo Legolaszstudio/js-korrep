@@ -77,6 +77,13 @@ const age = prompt('Hány éves vagy?'); // Mondjuk azt írják be, hogy 19
 alert(`A felhasználó ${age} éves`); // A felhasználó 19 éves
 ```
 
+_Pythonban_ ezt f-stringnek hívják, és hasonlóan működik, csak elhagyjuk a dollár jelet, és bactick helyett egy f betűt teszünk az idzőjel elé.
+```py
+print(f"2+2={2+2}") # 2+2=4
+age = input("Hány éves vagy?") # Mondjuk azt írják be, hogy 19
+print(f"A felhasználó {age} éves") # A felhasználó 19 éves
+```
+
 ## ParseInt és ParseFloat
 
 Sajnos a prompt csak szövegként tud bemenetet értelmezni, így amikor számokkal akarunk dolgozni elég érdekes hibákba futhatunk.
