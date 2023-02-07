@@ -12,10 +12,12 @@ const adatok = {
   eletkor: 16,
 };
 
-console.log(adatok.eletkor); // Novotny Levente
+// Ugyanaz
+console.log(adatok.nev); // Novotny Levente
 console.log(adatok["nev"]); // Novotny Levente
 
-console.log(adatok.nev); // 16
+// Ugyanaz
+console.log(adatok.eletkor); // 16
 console.log(adatok["eletkor"]); // 16
 ```
 

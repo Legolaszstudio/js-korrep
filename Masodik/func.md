@@ -2,7 +2,7 @@
 
 A függvények névvel ellátott kódrészek, amire hivatkozni tudsz, ezért nem kell legépelni a kódot többször, elég csak a nevére hivatkozni.
 
-> :ok_hand: Jó tudni: Azok a kód részek amik nem térnek vissza, azokat **nem** függvénynek, hanem **metódusnak** hívják.
+> :ok_hand: Jó tudni: Azokat a kód részeket amik nem térnek vissza **nem** függvénynek, hanem **metódusnak** hívják.
 
 Pl.: Egy function ami kiírja, hogy alma
 
@@ -83,7 +83,7 @@ console.log(osszeadas(3,5)); // 8
 
 ## Objetumos függvények
 
-Ha kicsit összerakjuk az eddig tanultakat, akkor lehet, hogy feltünt, hogy a console parancsokat `console.` prefixxel érjük el, ez azért van, mert a console egy objektum.
+Ha kicsit összerakjuk az eddig tanultakat, akkor lehet, hogy feltünt, hogy a console parancsokat `console.` prefixxel érjük el, ez azért van, mert a console egy objektum (valójába class de az is valamilyen szinten egy objektum).
 
 Csináljunk egy saját console-t:
 
@@ -104,7 +104,7 @@ novyConsole.warn('Urbin veszélyes ember');
 
 ## Rekurzió
 
-:ok_hand: Jó tudni: Vannak úgy nevezett rekurzív függvények, amik saját magukra hivatkoznak, pl 100-tól visszaszámló;
+:ok_hand: Jó tudni: Vannak úgy nevezett rekurzív függvények, amik saját magukra hivatkoznak, pl. itt egy 100-tól visszaszámló rekurzívan;
 
 ```js
 function visszaszamlalas(n) {
